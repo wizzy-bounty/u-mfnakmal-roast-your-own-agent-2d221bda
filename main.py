@@ -13,10 +13,16 @@ ENTRY = (
 )
 
 
+def validate_entry(text: str) -> str:
+    if not 1 <= len(text) <= 200:
+        raise ValueError(f"entry length {len(text)} outside 1-200 characters")
+    return text
+
+
 def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+        f.write(validate_entry(ENTRY))
 
 
 if __name__ == "__main__":
